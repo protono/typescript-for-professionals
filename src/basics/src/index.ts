@@ -166,3 +166,6 @@ let anySetBool: boolean = myAny
 if (typeof (myUnknown) == 'boolean') {
     let unknownSetBool: boolean = myUnknown
 }
+
+// any was made so to support untyped JavaScript
+// unknown can be used to help transition into TypeScript
