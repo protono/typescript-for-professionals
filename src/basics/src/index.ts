@@ -139,3 +139,30 @@ class TypedQueue<T> extends Queue {
     push(item: T) { this.data.push(item) }
     pop(): T { return this.data.shift() }
 }
+
+// Any and Unknown Types
+let myAny: any
+let myUnknown: unknown
+
+// Similarities
+
+// any
+myAny = 123
+myAny = 'aaa'
+
+// unknown
+myUnknown = 'xyz'
+myUnknown = 0.1
+
+// Differences
+
+// any
+myAny.allows.anything.you.can.imagine()
+let anySetBool: boolean = myAny
+
+// unknown
+// myUnknown.trim() // Error
+// let unknownSetBool: boolean = myUnknown // Error
+if (typeof (myUnknown) == 'boolean') {
+    let unknownSetBool: boolean = myUnknown
+}
