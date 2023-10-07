@@ -12,12 +12,12 @@ let regexp: RegExp = new RegExp('ab+c')
 let array: Array<number> = [1, 1, 2, 3, 5, 8]
 // let set: Set<number> = new Set([1, 2, 3, 5, 8])
 /** A first in first out collection */
-class Queue<T>{
+class parametrizedQueue<T>{
     private data: Array<T> = []
     push(item: T): void { this.data.push(item) }
     pop(): T | undefined { return this.data.shift() }
 }
-let queue: Queue<number> = new Queue()
+let queue: parametrizedQueue<number> = new parametrizedQueue()
 
 /** Arrays and Tuples */
 let array2: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -108,7 +108,7 @@ class Animal {
     #private_field: any
 }
 let cat = new Animal('cat')
-cat.move(10)
+// cat.move(10)
 // cat.name = 'dog' // Error
 
 class Bird extends Animal {
@@ -118,4 +118,24 @@ class Bird extends Animal {
     }
 }
 let bird = new Bird('bird')
-bird.fly(10)
+// bird.fly(10)
+
+// Generics
+/** a FIFO Collection */
+class Queue {
+    data: any[] = []
+    push(item: any) { this.data.push(item) }
+    pop() { return this.data.shift() }
+}
+
+const q = new Queue()
+q.push(123)
+q.push('abc')
+
+console.log(q.pop().toPrecision(3))
+// console.log(q.pop().toPrecision(1)) // Runtime error
+// Generics
+class TypedQueue<T> extends Queue {
+    push(item: T) { this.data.push(item) }
+    pop(): T { return this.data.shift() }
+}
