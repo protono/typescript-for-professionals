@@ -50,3 +50,48 @@ const point: Point = { x: 0, y: 0 }
 // All other behaviors are still the same as 'let'
 point.x = 1
 point.y = 1
+
+// Functions
+function add(a: number, b: number): number {
+    return a + b
+}
+function log(message: string): void {
+    console.log('LOG:', message)
+}
+
+function sum(...values: number[]): number {
+    return values.reduce((previous, current) => {
+        return previous + current
+    })
+}
+sum(1, 2)
+sum(0, 0, 0)
+
+// 1st-class Functions
+type MyType = (a: number, b: number) => number
+let myAdd: MyType
+myAdd = function (a: number, b: number): number {
+    return a + b
+}
+
+// Structural Typing
+// same Type signature
+type User = { id: string }
+type Product = { id: string }
+let user: User = { id: 'user-qieu76' }
+let product: Product = { id: 'product-907843' }
+user = product
+product = user
+// different Type signature
+type Point2D = { x: number, y: number }
+type Point3D = { x: number, y: number, z: number }
+let p2d: Point2D = { x: 0, y: 0 }
+let p3d: Point3D = { x: 0, y: 0, z: 0 }
+/** Extra info is OK */
+p2d = p3d
+function takesPoint2D(point: Point2D) {/** */ }
+takesPoint2D(p3d) // also called ducktyping
+/** Error: missing info */
+// p3d = p2d
+// function takesPoint3D(point: Point3D) {/** */ }
+// takesPoint3D(p2d)
