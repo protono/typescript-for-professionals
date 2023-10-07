@@ -4,13 +4,13 @@ let num: number = 5.8
 let hello: string = 'world'
 let noValue: undefined = undefined
 let doesNotExist: null = null
-let wish: symbol = Symbol('star')
-let bigNum: bigint = 24n
+// let wish: symbol = Symbol('star')
+// let bigNum: bigint = 24n
 
 /** Instance Types */
 let regexp: RegExp = new RegExp('ab+c')
 let array: Array<number> = [1, 1, 2, 3, 5, 8]
-let set: Set<number> = new Set([1, 2, 3, 5, 8])
+// let set: Set<number> = new Set([1, 2, 3, 5, 8])
 /** A first in first out collection */
 class Queue<T>{
     private data: Array<T> = []
@@ -98,19 +98,21 @@ takesPoint2D(p3d) // also called ducktyping
 
 // Classes
 class Animal {
-    readonly name: string
+    name: string
     constructor(name: string) {
         this.name = name
     }
     public move(distInMtrs: number): void {
         console.log(`${this.name} moved ${distInMtrs} meters.`)
     }
+    #private_field: any
 }
 let cat = new Animal('cat')
 cat.move(10)
 // cat.name = 'dog' // Error
 
 class Bird extends Animal {
+    constructor(name: string) { super(name) }
     public fly(distInMtrs: number): void {
         console.log(`${this.name} flew ${distInMtrs} meters.`)
     }
