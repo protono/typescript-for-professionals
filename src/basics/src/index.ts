@@ -95,3 +95,25 @@ takesPoint2D(p3d) // also called ducktyping
 // p3d = p2d
 // function takesPoint3D(point: Point3D) {/** */ }
 // takesPoint3D(p2d)
+
+// Classes
+class Animal {
+    readonly name: string
+    constructor(name: string) {
+        this.name = name
+    }
+    public move(distInMtrs: number): void {
+        console.log(`${this.name} moved ${distInMtrs} meters.`)
+    }
+}
+let cat = new Animal('cat')
+cat.move(10)
+// cat.name = 'dog' // Error
+
+class Bird extends Animal {
+    public fly(distInMtrs: number): void {
+        console.log(`${this.name} flew ${distInMtrs} meters.`)
+    }
+}
+let bird = new Bird('bird')
+bird.fly(10)
