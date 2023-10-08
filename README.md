@@ -11,3 +11,7 @@
 
 `npm run build`
 `npx serve build`
+
+## setup 2
+
+`npx tsc --init --rootdir src --outdir lib --sourceMap --declaration --declarationMap`

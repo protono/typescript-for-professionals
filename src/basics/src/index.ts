@@ -132,7 +132,7 @@ const q = new Queue()
 q.push(123)
 q.push('abc')
 
-console.log(q.pop().toPrecision(3))
+//console.log(q.pop().toPrecision(3))
 // console.log(q.pop().toPrecision(1)) // Runtime error
 // Generics
 class TypedQueue<T> extends Queue {
@@ -157,7 +157,7 @@ myUnknown = 0.1
 // Differences
 
 // any
-myAny.allows.anything.you.can.imagine()
+// myAny.allows.anything.you.can.imagine() // FIXME: TypeError
 let anySetBool: boolean = myAny
 
 // unknown
@@ -167,5 +167,35 @@ if (typeof (myUnknown) == 'boolean') {
     let unknownSetBool: boolean = myUnknown
 }
 
+// Typeacsting
 // any was made so to support untyped JavaScript
 // unknown can be used to help transition into TypeScript
+function load(): unknown { return 'hello' }
+const untrimmed = load()
+// let trimmed = untrimmed.trim() // 'untrimmed' is of type 'unknown'.
+
+// Type Assertions
+let trimmed = (untrimmed as string).trim()
+trimmed = (<string>untrimmed).trim() // does not work inside .tsx files
+
+// Type coercions
+let leet
+leet = '1337'
+// type assertion is not type casting
+// num = leet as number // used to work
+num = +leet // 1337
+
+// Modules
+import { isPalindrome } from './utils'
+import * as utils from './utils'
+isPalindrome('madam')
+utils.isPalindrome('madan')
+
+// Type Declarations
+console.log(
+    'Logged in user:',
+    process.env.USER
+)
+
+import * as filesystem from 'fs'
+filesystem.writeFileSync('hello.txt', 'Hello world')
