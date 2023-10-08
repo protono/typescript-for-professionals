@@ -228,3 +228,7 @@ const mainAsync1 = async () => {
     console.log('3s')
 }
 mainAsync1()
+
+// ts-node
+let message: string = 'Hello world'
+console.log(message)

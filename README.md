@@ -19,3 +19,7 @@
 
 `npm i palind`
 `import {isPalindrom} from 'palind'`
+
+## running 2
+
+`npx ts-node file.ts`
