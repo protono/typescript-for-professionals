@@ -110,4 +110,44 @@ function rollDice(): DiceValue {
         Math.floor(Math.random() * 6) + 1
     ) as DiceValue
 }
-if (rollDice() === 7) { throw new Error('Not possible') }
+// if (rollDice() === 7) { throw new Error('Not possible') } // DiceValue and 7 have no overlap
+
+// Narrowing the 'Object' Type
+class Cat {
+    meow() {
+        console.log('Meow')
+    }
+}
+class Dog {
+    bark() {
+        console.log('Woof')
+    }
+}
+type Pet = Cat | Dog
+function speak(pet: Pet) {
+    // if dog bark, if cat meow
+    typeof new Cat() === 'object' // we cannot use typeof to determine if a Pet is a Cat or a Dog
+    // use instanceof instead
+    if (pet instanceof Cat) { pet.meow() }
+    if (pet instanceof Dog) { pet.bark() }
+}
+
+// When the objects are not instantited from a Class
+type Square = {
+    size: number // represents height and width
+}
+type Rectangle = {
+    width: number,
+    height: number
+}
+type Shape = Square | Rectangle
+function area(shape: Shape) {
+    // if square, if rectangle
+    // we cannot use instanceof here
+    if ('size' in shape) { return shape.size * shape.size }
+    if ('width' in shape) { return shape.width * shape.height }
+}
+area({ size: 2 })
+area({ width: 3, height: 4 })
+
+//
