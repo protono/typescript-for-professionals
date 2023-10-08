@@ -210,7 +210,6 @@ type ContactDetails =
     & Person4
     & Email
     & Phone
-
 function contact(details: ContactDetails) {
     console.log(`
     Dear ${details.name}.\n
