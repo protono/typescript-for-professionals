@@ -199,3 +199,32 @@ console.log(
 
 import * as filesystem from 'fs'
 filesystem.writeFileSync('hello.txt', 'Hello world')
+
+const main1 = () => {
+    console.log('Hello world')
+}
+main1()
+
+const main2 = () => {
+    setTimeout(() => {
+        console.log('1s')
+        setTimeout(() => {
+            console.log('2s')
+            setTimeout(() => {
+                console.log('3s')
+            }, 1000)
+        }, 1000)
+    }, 1000)
+}
+main2()
+
+const delay = (ms: number) => new Promise(resolver => setTimeout(resolver, ms))
+const mainAsync1 = async () => {
+    await delay(1000)
+    console.log('1s')
+    await delay(1000)
+    console.log('2s')
+    await delay(1000)
+    console.log('3s')
+}
+mainAsync1()

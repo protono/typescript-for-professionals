@@ -15,3 +15,7 @@
 ## setup 2
 
 `npx tsc --init --rootdir src --outdir lib --sourceMap --declaration --declarationMap`
+`npm publish`
+
+`npm i palind`
+`import {isPalindrom} from 'palind'`
