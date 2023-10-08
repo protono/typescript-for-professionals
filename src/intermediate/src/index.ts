@@ -176,3 +176,50 @@ function logValidation(outcome: ValidationOutcome) {
     if (outcome.isValid) { console.log('Success, validated value: ', outcome.value) }
     if (!outcome.isValid) { console.log('Failure, error reason: ', outcome.reason) }
 }
+
+// Class Parameter Properties
+class Person2 {
+    public name: string
+    public age: number
+    constructor(name: string, age: number) { this.name = name; this.age = age }
+}
+// const adam = new Person2('Adam', 120000)
+// console.log(adam.name, adam.age)
+// removing duplications with parameter properties, same result as Person2
+class Person3 {
+    constructor(public name: string, public age: number) { }
+}
+const adam2 = new Person3('Adam', 120000)
+console.log(adam2.name, adam2.age)
+
+// null vs undefined
+let undef = undefined
+let nul = null
+undef == null
+
+// Intersection Types
+// example 1
+type Point2D = { x: number, y: number }
+type Point3D = { x: number, y: number, z: number }
+type Point3DWithIntersection = Point2D & { z: number }
+// example2
+type Person4 = { name: string }
+type Email = { email: string }
+type Phone = { phone: string }
+type ContactDetails =
+    & Person4
+    & Email
+    & Phone
+
+function contact(details: ContactDetails) {
+    console.log(`
+    Dear ${details.name}.\n
+    I hope you received our email at ${details.email}.\n
+    We will call you a ${details.phone} shortly.\n
+    `)
+}
+contact({
+    name: 'John',
+    email: 'test@test.com',
+    phone: '123'
+})
