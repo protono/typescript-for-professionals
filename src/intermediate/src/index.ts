@@ -134,9 +134,11 @@ function speak(pet: Pet) {
 
 // When the objects are not instantited from a Class
 type Square = {
+    kind: 'square'
     size: number // represents height and width
 }
 type Rectangle = {
+    kind: 'rectangle'
     width: number,
     height: number
 }
@@ -147,7 +149,30 @@ function area(shape: Shape) {
     if ('size' in shape) { return shape.size * shape.size }
     if ('width' in shape) { return shape.width * shape.height }
 }
-area({ size: 2 })
-area({ width: 3, height: 4 })
+// area({ size: 2 })
+// area({ width: 3, height: 4 })
 
-//
+// Discriminated Unions
+type Square2 = {
+    kind: 'square'
+    size: number // represents height and width
+}
+type Rectangle2 = {
+    kind: 'rectangle'
+    width: number,
+    height: number
+}
+type Shape2 = Square2 | Rectangle2
+function area2(shape: Shape2) {
+    if (shape.kind === 'square') { return shape.size * shape.size }
+    if (shape.kind === 'rectangle') { return shape.width * shape.height }
+}
+
+// Other example
+type ValidationSuccess = { isValid: true, value: string }
+type ValidationFailure = { isValid: false, reason: string }
+type ValidationOutcome = ValidationSuccess | ValidationFailure
+function logValidation(outcome: ValidationOutcome) {
+    if (outcome.isValid) { console.log('Success, validated value: ', outcome.value) }
+    if (!outcome.isValid) { console.log('Failure, error reason: ', outcome.reason) }
+}
